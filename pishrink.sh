@@ -92,14 +92,12 @@ if [[ ! -f /tmp/panyi_rootfs ]]; then
     PART="/dev/mmcblk0p2"
     fdisk -l ${DISK}>> /dev/null 2>&1 || (echo "could not find device $DISK - please check the name" && exit 1)
     MAXSIZEMB=$(printf %s\\n 'unit MB print list' | parted | grep "Disk ${DISK}" | cut -d' ' -f3 | tr -d MB)
-    echo "[ok] ${PART} Will change to ${MAXSIZEMB} MB "
+    echo "[ok] ${PART} 将会扩展到 ${MAXSIZEMB} MB " >>/tmp/panyi_rootfs
     parted ${DISK} resizepart 2 ${MAXSIZEMB}
     [ $? != 0 ] && echo "扩展分区出错了！" >>/tmp/panyi_rootfs
     e2fsck -y ${PART}
     resize2fs ${PART}
     [ $? = 0 ] && echo "文件系统扩展成功" >>/tmp/panyi_rootfs
-else 
-    touch /tmp/panyi_rootfs
 fi
 EOF1
     #####End no touch zone#####
