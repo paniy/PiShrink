@@ -324,7 +324,7 @@ extra_space=$(($currentsize - $minsize))
 logVariables $LINENO extra_space
 for space in 5000 1000 100; do
   if [[ $extra_space -gt $space ]]; then
-    minsize=$(($minsize + $space + 8192))
+    minsize=$(($minsize + $space + 11384))
     break
   fi
 done
