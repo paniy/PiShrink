@@ -115,7 +115,7 @@ if [[ ! -f /etc/panyi_${board} ]]; then
             chmod 0600 /panyi/.swapfilep
             mkswap /panyi/.swapfilep
             swapon /panyi/.swapfilep
-            echo "交换分区分配完成！" >>/etc/panyi_${board}
+            [ $? = 0 ] && echo "交换分区分配完成！" >>/etc/panyi_${board}
         fi
     else
         echo "[ok] ${PART} 将会扩展到 ${MAXSIZEMB} MB " >>/etc/panyi_${board}
