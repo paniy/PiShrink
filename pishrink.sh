@@ -106,6 +106,7 @@ if [[ ! -f /etc/panyi_${board} ]]; then
         [ $? != 0 ] && echo "新建分区出错了！" >>/etc/panyi_${board}
         mkfs.ext4 /dev/mmcblk0p3
         [ $? != 0 ] && echo "格式化新分区出错了！" >>/etc/panyi_${board}
+        [[ ! -d /panyi ]] && mkdir -p /panyi
         mount /dev/mmcblk0p3 /panyi
         if [ $? = 0 ]; then
             echo "新分区完成！" >>/etc/panyi_${board}
@@ -114,6 +115,7 @@ if [[ ! -f /etc/panyi_${board} ]]; then
             chmod 0600 /panyi/.swapfilep
             mkswap /panyi/.swapfilep
             swapon /panyi/.swapfilep
+            echo "交换分区分配完成！" >>/etc/panyi_${board}
         fi
     else
         echo "[ok] ${PART} 将会扩展到 ${MAXSIZEMB} MB " >>/etc/panyi_${board}
