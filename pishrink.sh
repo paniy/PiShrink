@@ -86,7 +86,6 @@ function set_autoexpand() {
 
     #####Do not touch the following lines#####
 cat <<\EOF1 > "$mountdir/etc/rc.local"
-#!/bin/bash
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
