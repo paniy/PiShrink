@@ -91,7 +91,8 @@ cat <<\EOF1 > "$mountdir/etc/rc.local"
 
 board=$(cat /tmp/sysinfo/board_name | cut -d , -f2)
 if [[ ! -f /etc/panyi_${board} ]]; then
-  bash /etc/panyi-disk.sh
+    touch /etc/panyi_${board}
+    bash /etc/panyi-disk.sh
 fi
 
 exit 0
